@@ -14,4 +14,10 @@ public class CheckResult {
       int heartNum = 0;
       int cloverNum = 0;
       int diaNum = 0;
+
+      // 모양이 같은 5개의 카드를 담을 변수
+		ArrayList<Integer> selSpadeCardPattern 	= new ArrayList<Integer>();
+		ArrayList<Integer> selCloverCardPattern = new ArrayList<Integer>();
+		ArrayList<Integer> selHeartCardPattern 	= new ArrayList<Integer>();
+		ArrayList<Integer> selDiaCardPattern 	= new ArrayList<Integer>();
 }
