@@ -4,4 +4,14 @@ import java.util.ArrayList;
 
 public class CheckResult {
       int[] countSameCard = new int[13];
+
+      public String getResult(int[] card) {
+        MappingCard mc = new MappingCard();
+      }
+
+      // 스트레이트 여부 판단 field
+      int spadeNum = 0;
+      int heartNum = 0;
+      int cloverNum = 0;
+      int diaNum = 0;
 }
