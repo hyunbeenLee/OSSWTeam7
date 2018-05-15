@@ -50,4 +50,15 @@ public class CheckResult {
 				selDiaCardPattern.add((Integer) mc.getCardNum(card[i]));
 			}
 		}
+
+		// Straight_Flush or Royal_Straight
+		if ((selCloverCardPattern.size() >= 5) && (IsContinuous(selCloverCardPattern) == true)) {
+			return GetStraightResult(selCloverCardPattern, Constants.CLOVER);
+		} else if ((selDiaCardPattern.size() >= 5) && (IsContinuous(selDiaCardPattern) == true)) {
+			return GetStraightResult(selDiaCardPattern, Constants.DIAMOND);
+		} else if ((selHeartCardPattern.size() >= 5 && (IsContinuous(selHeartCardPattern) == true))) {
+			return GetStraightResult(selHeartCardPattern, Constants.HEART);
+		} else if ((selSpadeCardPattern.size() >= 5) && (IsContinuous(selSpadeCardPattern) == true)) {
+			return GetStraightResult(selSpadeCardPattern, Constants.SPADE);
+		}
 }
