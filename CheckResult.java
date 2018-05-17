@@ -99,4 +99,6 @@ public class CheckResult {
 
 			// Triple or Two_pair or One_pair 리턴
 			return pairedCard;
+    }
+  return null;
 }
