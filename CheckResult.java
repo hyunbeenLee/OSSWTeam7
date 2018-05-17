@@ -102,3 +102,28 @@ public class CheckResult {
     }
   return null;
 }
+
+private ArrayList<Integer> devOriginCard(int[] card, int start, int end) {
+  ArrayList<Integer> straight = new ArrayList<Integer>();
+  for (int i = start; i < end; i++) {
+    straight.add(card[i]);
+  }
+  return straight;
+}
+
+private String Flush(ArrayList<Integer> selCardPattern) {
+  for (int i = selCardPattern.size(); i > selCardPattern.size() - 5; i--) {
+    if ((Integer) selCardPattern.get(i - 1) == 14) {
+      return "A_Flush";
+    } else {
+      return "" + selCardPattern.get(i - 5) + "_Flush";
+    }
+  }
+  return null;
+}
+
+private String getPairCard(int[] countSameCard2) {
+  MappingCard mc = new MappingCard();
+  int checkThree = 0;
+  int checkTwo = 0;
+}
