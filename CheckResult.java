@@ -126,4 +126,28 @@ private String getPairCard(int[] countSameCard2) {
   MappingCard mc = new MappingCard();
   int checkThree = 0;
   int checkTwo = 0;
+
+  // 트리플 or 투페어 개수
+		int tripleNum = 0;
+		int twoPairNum = 0;
+
+    // ********************************************
+		// * 4 카드 (Four Card) 		  *
+		// * 4장의 카드가 같은 숫자로 나열되어 있는 것 				  *
+		// ********************************************
+
+		for (int i = 0; i < countSameCard.length; i++) {
+			// FourCard인 경우 return
+			if (countSameCard[i] == 4) {
+				if (i < 9) {
+					return "" + (i + 2) + "_Four_Card";
+				} else
+					return mc.aboveTen(i + 2) + "_Four_Card";
+			} else if (countSameCard[i] == 3) {
+				checkThree++;
+				tripleNum = (i + 2);
+			} else if (countSameCard[i] == 2) {
+				checkTwo++;
+				twoPairNum = (i + 2);
+			}
 }
