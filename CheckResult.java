@@ -150,4 +150,17 @@ private String getPairCard(int[] countSameCard2) {
 				checkTwo++;
 				twoPairNum = (i + 2);
 			}
+
+      // ********************************************
+			// * 풀 하우스 (Full House) 					  *
+			// * 3장의 카드의 숫자가 같고, 						  *
+			// * 2장의 카드 숫자가 동일 한 것. 					  *
+			// ********************************************
+			if ((checkThree == 1) && (checkTwo >= 1)) {
+				if (tripleNum <= 10) {
+					return "" + tripleNum + "_Full_House";
+				} else
+					return mc.aboveTen(tripleNum) + "_Full_House";
+			}
+		}
 }
