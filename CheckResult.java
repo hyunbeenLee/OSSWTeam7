@@ -82,4 +82,13 @@ public class CheckResult {
 		// * 스트레이트 (Straigh) 						  *
 		// * 5장의 카드가 순서적으로 나열되어 있는 것. 			  *
 		// ********************************************
+
+    ArrayList<Integer> straight1 = devOriginCard(card, 0, 5);
+    ArrayList<Integer> straight2 = devOriginCard(card, 1, 6);
+    ArrayList<Integer> straight3 = devOriginCard(card, 2, 7);
+
+    if(IsContinuous2(0, 5, straight1) || IsContinuous2(1, 6, straight2) || IsContinuous2(2, 7, straight3))
+			return "Straight";
+
+		countSameCard = countSameNumCard(card);
 }
