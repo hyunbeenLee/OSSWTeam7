@@ -91,4 +91,12 @@ public class CheckResult {
 			return "Straight";
 
 		countSameCard = countSameNumCard(card);
+
+    // Four Card 미만인 경우 판단
+		String pairedCard = getPairCard(countSameCard);
+
+		if (!pairedCard.equals("")) {
+
+			// Triple or Two_pair or One_pair 리턴
+			return pairedCard;
 }
