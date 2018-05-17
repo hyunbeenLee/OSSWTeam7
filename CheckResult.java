@@ -61,4 +61,20 @@ public class CheckResult {
 		} else if ((selSpadeCardPattern.size() >= 5) && (IsContinuous(selSpadeCardPattern) == true)) {
 			return GetStraightResult(selSpadeCardPattern, Constants.SPADE);
 		}
+
+    // ********************************************
+		// * 플러시 (Flush) *
+		// * 5장의 카드가 숫자와는 관계없이 같은 문양으로 *
+		// * 되어 있는 것 *
+		// ********************************************
+
+		else if (selCloverCardPattern.size() >= 5) {
+			return Flush(selCloverCardPattern);
+		} else if (selDiaCardPattern.size() >= 5) {
+			return Flush(selDiaCardPattern);
+		} else if (selHeartCardPattern.size() >= 5) {
+			return Flush(selHeartCardPattern);
+		} else if (selSpadeCardPattern.size() >= 5) {
+			return Flush(selSpadeCardPattern);
+		}
 }
