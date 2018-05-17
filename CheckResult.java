@@ -77,4 +77,9 @@ public class CheckResult {
 		} else if (selSpadeCardPattern.size() >= 5) {
 			return Flush(selSpadeCardPattern);
 		}
+
+    // ********************************************
+		// * 스트레이트 (Straigh) 						  *
+		// * 5장의 카드가 순서적으로 나열되어 있는 것. 			  *
+		// ********************************************
 }
