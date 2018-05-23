@@ -163,4 +163,101 @@ private String getPairCard(int[] countSameCard2) {
 					return mc.aboveTen(tripleNum) + "_Full_House";
 			}
 		}
+	
+	// ********************************************
+		// * 트리플 (Triple - Three of a Kind) 		  *
+		// * 3장의 카드가 같은 숫자인 것, 						  *
+		// ********************************************
+		if (checkThree >= 1)
+			if (tripleNum <= 9) {
+				return "" + tripleNum + "_Triple";
+			} else
+				return mc.getCardNum(tripleNum-1) + "_Triple";
+
+		// ********************************************
+		// * 투 페어 (Two Pair) 						  *
+		// * 2장의 카드가 같은 숫자로 2 패인 것. 				  *
+		// ********************************************
+		else if (checkTwo >= 2)
+			if (twoPairNum <= 9) {
+				return "" + twoPairNum + "_Two_Pair";
+			} else
+				return mc.getCardNum(twoPairNum-1) + "_Two_Pair";
+
+		// ********************************************
+		// * 원 페어 (One Pair) 						  *
+		// * 2장의 카드가 같은 숫자로 1패인 것. 					  *
+		// ********************************************
+		else if (checkTwo >= 1)
+			if (tripleNum <= 9) {
+				return "" + twoPairNum + "_One_Pair";
+			} else
+				return mc.getCardNum(twoPairNum-1) + "_One_Pair";
+
+		return "";
+	}
+
+  public int[] ArrangeCard(int startIndex, int[] cardNum, int totaclCardNum) {
+		int[] tempCard = new int[Constants.CARDNUM];
+		for (int i = startIndex; i < Constants.CARDNUM; i++) {
+			for (int j = i + 1; j < Constants.CARDNUM; j++) {
+				if (cardNum[i] > cardNum[j]) {
+					cardNum[i] = cardNum[i] + cardNum[j];
+					cardNum[j] = cardNum[i] - cardNum[j];
+					cardNum[i] = cardNum[i] - cardNum[j];
+				}
+			}
+			tempCard[i] = cardNum[i];
+		}
+		return tempCard;
+	}
+
+  // ********* Straight 판단 함수 1 *********
+	public boolean IsContinuous(ArrayList<Integer> fiveCard) {
+		for (int i = 1; i < 5; i++) {
+			if ((Integer) fiveCard.get(i - 1) != (Integer) fiveCard.get(i) - 1) {
+				return false;
+			}
+			if (fiveCard.contains(14) && fiveCard.contains(2) && fiveCard.contains(3) && fiveCard.contains(4) && fiveCard.contains(5)) {
+				return true;
+			}
+		}
+		return true;
+	}
+
+	// ********* Straight 판단 함수 2 *********
+	public String GetStraightResult(ArrayList<Integer> fiveCard, String pattern) {
+		if ((fiveCard.size() >= 5) && IsContinuous(fiveCard)) {
+			for (int i = fiveCard.size(); i > fiveCard.size() - 5; i--) {
+				if (fiveCard.contains((Integer) 14)
+						&& fiveCard.contains((Integer) 2)) {
+					return pattern + "_A" + "_Royal_Straight";
+				}
+				return pattern + "_" + (fiveCard.get(i - 5)-1)
+						+ "_Straight_Flush";
+			}
+		}
+		return null;
+	}
+
+	// ********* Straight 판단 함수 3 *********
+	public boolean IsContinuous2(int start, int end, ArrayList<Integer> fiveCard) {
+		MappingCard mc = new MappingCard();
+		for (int i = start; i < end; i++) {
+			if ((Integer)mc.getCardNum((Integer) fiveCard.get(i)) != (Integer)mc.getCardNum((Integer) fiveCard.get(i))-1) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+  // 숫자 별로 카드가 몇 장 있는지 파악
+	public int[] countSameNumCard(int[] card) {
+		MappingCard mc = new MappingCard();
+		int[] countSameCard = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+		for (int i = 0; i < card.length; i++) {
+			countSameCard[(Integer) mc.getCardNum(card[i])-2]++;
+		}
+		return countSameCard;
+	}
 }
