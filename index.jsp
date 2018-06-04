@@ -31,7 +31,7 @@
 		
 		//webSocket 부분
 		
-		var webSocket = new WebSocket("ws://localhost:8080/WebSocketEx/websocket");
+		var webSocket = new WebSocket("ws://localhost:8181/PokerGame/index");
         var messageTextArea = document.getElementById("messageTextArea");
         //웹 소켓이 연결되었을 때 호출되는 이벤트
         webSocket.onopen = function(message){
