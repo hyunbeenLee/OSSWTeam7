@@ -81,7 +81,34 @@
 				document.getElementById('image_1').src = './image/0.jpg';
 				document.getElementById('image_2').src = './image/0.jpg';
 			} 
-		} 
+		}
+		var webSocket = new WebSocket("ws://localhost:8181/tompok/websocket");
+        var messageTextArea = document.getElementById("messageTextArea");
+        //웹 소켓이 연결되었을 때 호출되는 이벤트
+        webSocket.onopen = function(message){
+            messageTextArea.value += "Server connect...\n";
+        };
+        //웹 소켓이 닫혔을 때 호출되는 이벤트
+        webSocket.onclose = function(message){
+            messageTextArea.value += "Server Disconnect...\n";
+        };
+        //웹 소켓이 에러가 났을 때 호출되는 이벤트
+        webSocket.onerror = function(message){
+            messageTextArea.value += "error...\n";
+        };
+        //웹 소켓에서 메시지가 날라왔을 때 호출되는 이벤트
+        webSocket.onmessage = function(message){
+            messageTextArea.value += "상대  => "+message.data+"\n";
+        };
+        //Send 버튼을 누르면 실행되는 함수
+        function sendMessage(){
+            var message = document.getElementById("textMessage");
+            messageTextArea.value += "나  => "+message.value+"\n";
+            //웹소켓으로 textMessage객체의 값을 보낸다.
+            webSocket.send(message.value);
+            //textMessage객체의 값 초기화
+            message.value = "";
+        }
 	</script>
 	<body>
 		<table>
@@ -127,6 +154,12 @@
 						<input type="hidden" name="compResult" value="<%= compResult %>">
 						<input type="hidden" name="userResult" value="<%= userResult %>">
 						<input type="submit" value="계속" >
+						<br />
+						<br />
+						<textarea id="messageTextArea" rows="10" cols="50"></textarea>
+						<br />
+						<input id="textMessage" type="text">
+						<input onclick="sendMessage()" value="입력" type="button">
 					</form>
 				</td>
 			</tr>
